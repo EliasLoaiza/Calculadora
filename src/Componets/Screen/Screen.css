@@ -1,0 +1,22 @@
+.screen{
+    background-color: white;
+    width: 30vw;
+    height: 30vh;
+    /* border-radius: 10%; */
+    box-shadow: 1px 1px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 5vh;
+  }
+  .data {
+    font-size: 2.5rem;
+    margin-bottom: 2vh;
+    margin-right: 2vw;
+  }
+  .history{
+    font-size: 1rem;
+    margin-right: 1vw;
+    opacity: 70%;
+  }

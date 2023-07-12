@@ -1,0 +1,44 @@
+.buttoms {
+    display: grid;
+    grid-template-columns:  repeat(4, 1fr);
+    width: 30vw;
+    height: 35vh;
+    box-shadow: 1px 1px 10px;
+
+}
+.operation {
+    background-color: #154360;
+}
+.buttoms button:nth-child(10){
+    grid-row: 4;
+    grid-column: 2;
+}
+.buttoms button:nth-child(13){
+    grid-row: 1 ;
+    grid-column: 4;
+}
+.buttoms button:nth-child(14){
+    grid-row: 2 ;
+    grid-column: 4;
+}
+.buttoms button:nth-child(15){
+    grid-row: 3 ;
+    grid-column: 4;
+}
+.buttoms button:nth-child(16){
+    grid-row: 4 ;
+    grid-column: 4;
+}
+.buttoms button:nth-child(17){
+    grid-row: 5;
+    grid-column: 1/5;
+    background-color: #FF7B00;
+    color: white;
+}
+button{
+    color: white;
+    background-color: #1F618D;
+    font-size: large;
+    border: none;
+    /* border-radius: 10%; */
+}
