@@ -2,24 +2,36 @@
 import React from 'react';
 import './Buttoms.css'
 function Buttoms({setdatosValue}){
-    var operation = '';
+    var operation = "";
     function totalOperation(data) {
         if (data.includes('+')){
-            let array = data.split('+');
-            let data1 = array[0];
-            let data2 = array[1];
+            let array = data.split('=');
+            let array2 = array[0].split('+');
+            let data1 = array2[0];
+            let data2 = array2[1];   
+            let result = Number(data1) + Number(data2);  
+            console.log(result);
         } else  if (data.includes('-')){
-            let array = data.split('-');
-            let data1 = array[0];
-            let data2 = array[1];
+            let array = data.split('=');
+            let array2 = array[0].split('-');
+            let data1 = array2[0];
+            let data2 = array2[1];   
+            let result = Number(data1) - Number(data2);  
+            console.log(result);
         } else  if (data.includes('/')){
-            let array = data.split('/');
-            let data1 = array[0];
-            let data2 = array[1];
+            let array = data.split('=');
+            let array2 = array[0].split('/');
+            let data1 = array2[0];
+            let data2 = array2[1];   
+            let result = Number(data1) / Number(data2);  
+            console.log(result);
         } else  if (data.includes('*')){
-            let array = data.split('*');
-            let data1 = array[0];
-            let data2 = array[1];
+            let array = data.split('=');
+            let array2 = array[0].split('8');
+            let data1 = array2[0];
+            let data2 = array2[1];   
+            let result = Number(data1) * Number(data2);  
+            console.log(result);
         }
     }
     function saveDato(data){

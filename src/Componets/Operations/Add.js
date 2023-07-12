@@ -1,7 +1,8 @@
 import React from "react";
-function Add(datosValue){
-    return(
-        console.log('estoy en Add')
-    );
+function Add({data}){
+    let array = data.split('+');
+    let data1 = array[0];
+    let data2 = array[1];
+    console.log('sume')
 }
 export { Add };
