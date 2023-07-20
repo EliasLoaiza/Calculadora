@@ -5,10 +5,12 @@ import React from 'react';
 function Base(){
     const [datosValue, setdatosValue] = React.useState('');
     console.log(datosValue);
+    const [state, setState] = React.useState(false);
     return (
             <div className='base'>
                 <Screen datosValue={datosValue} />
-                <Buttoms setdatosValue={setdatosValue} datosValue={datosValue}/>
+                <Buttoms setdatosValue={setdatosValue} datosValue={datosValue}
+                         setState={setState} state={state}/>
             </div>
     );
 }

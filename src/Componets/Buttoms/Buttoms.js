@@ -1,16 +1,26 @@
 
 import React from 'react';
 import './Buttoms.css'
-function Buttoms({setdatosValue , datosValue}){
+function Buttoms({setdatosValue , datosValue, setState, state}){
     const operation = {
-        solved: false,
+        solved: state,
         data1: "",
         data2: "",
-        complete: "",
+        complete: datosValue,
     };
-    console.log(operation.solved);
-    console.log(operation.complete);
-
+    function validateOperator() {
+        if(operation.complete.includes('+')){
+            return true;
+        } else if(operation.complete.includes('-')){
+            return true;
+        } else if(operation.complete.includes('/')){
+            return true;
+        } else if(operation.complete.includes('*')){
+            return true;
+        } else {
+            return false;
+        }
+    };
     function totalOperation(operation) {
         if (operation.complete.includes('+')){
             let array = operation.complete.split('=');
@@ -18,44 +28,47 @@ function Buttoms({setdatosValue , datosValue}){
             operation.data1 = array2[0];
             operation.data2 = array2[1];
             let result = Number(operation.data1) + Number(operation.data2);
-            setdatosValue(result);
-            operation.complete = "";
-            operation.solved = true;   
-        } else  if (operation.includes('-')){
-            let array = operation.split('=');
+            setdatosValue(result.toString());
+            setState(true);   
+        } else  if (operation.complete.includes('-')){
+            let array = operation.complete.split('=');
             let array2 = array[0].split('-');
-            let data1 = array2[0];
-            let data2 = array2[1];
-            let result = Number(data1) - Number(data2);
-            setdatosValue(result);
-            operation.complete = "";
-        } else  if (operation.includes('/')){
-            let array = operation.split('=');
+            operation.data1 = array2[0];
+            operation.data2 = array2[1];
+            let result = Number(operation.data1) - Number(operation.data2);
+            setdatosValue(result.toString());
+            setState(true);
+        } else  if (operation.complete.includes('/')){
+            let array = operation.complete.split('=');
             let array2 = array[0].split('/');
-            let data1 = array2[0];
-            let data2 = array2[1];
-            let result = Number(data1) / Number(data2);
-            setdatosValue(result);  
-            operation.complete = "";
-        } else  if (operation.includes('*')){
-            let array = operation.split('=');
-            let array2 = array[0].split('*');
-            let data1 = array2[0];
-            let data2 = array2[1];
-            let result = Number(data1) * Number(data2);
+            operation.data1 = array2[0];
+            operation.data2 = array2[1];
+            let result = Number(operation.data1) / Number(operation.data2);
             setdatosValue(result);
-            operation.complete = "";
+            setState(true);
+        } else  if (operation.complete.includes('*')){
+            let array = operation.complete.split('=');
+            let array2 = array[0].split('*');
+            operation.data1 = array2[0];
+            operation.data2 = array2[1];
+            let result = Number(operation.data1) * Number(operation.data2);
+            setdatosValue(result);
+            setState(true);
         }
     }
     function saveDato(data){
+        operation.complete = datosValue + data;
         if(operation.solved){
-            console.log('true')
-            setdatosValue("");
-            operation.solved = false;
-            console.log(operation.solved)
+            if(validateOperator()){
+                setState(false);
+                setdatosValue(operation.complete)
+                console.log('includes = ' + operation.complete);
+            } else {    
+                setdatosValue(data);
+                setState(false);
+                console.log('no includes = ' + operation.complete);
+            }
         }else{
-            console.log('False')
-            operation.complete = datosValue + data;
             setdatosValue(operation.complete)
             if(operation.complete.includes("=")){
             totalOperation(operation);
