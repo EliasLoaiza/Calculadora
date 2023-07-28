@@ -9,28 +9,44 @@
 .operation {
     background-color: #154360;
 }
-.buttoms button:nth-child(10){
-    grid-row: 4;
-    grid-column: 2;
+.operation:hover{
+    background-color: #1F618D;
 }
-.buttoms button:nth-child(13){
+.operation:active{
+    background-color: #0f3046;
+}
+.buttoms button:nth-child(15){
+    grid-row: 5;
+    grid-column: 3;
+}
+.buttoms button:nth-child(15){
+    grid-row: 5;
+    grid-column: 1;
+}
+.buttoms button:nth-child(16){
     grid-row: 1 ;
     grid-column: 4;
 }
-.buttoms button:nth-child(14){
+.buttoms button:nth-child(17){
     grid-row: 2 ;
     grid-column: 4;
 }
-.buttoms button:nth-child(15){
+.buttoms button:nth-child(18){
     grid-row: 3 ;
     grid-column: 4;
 }
-.buttoms button:nth-child(16){
+.buttoms button:nth-child(19){
     grid-row: 4 ;
     grid-column: 4;
 }
-.buttoms button:nth-child(17){
-    grid-row: 5;
+.buttoms button:nth-child(20){
+    background-image: url(./borrar.png);
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.buttoms button:nth-child(21){
+    grid-row: 6;
     grid-column: 1/5;
     background-color: #FF7B00;
     color: white;
@@ -40,5 +56,10 @@ button{
     background-color: #1F618D;
     font-size: large;
     border: none;
-    /* border-radius: 10%; */
+}
+button:hover{
+    background-color: #154360;
+}
+button:active{
+    background-color: #0f3046;
 }

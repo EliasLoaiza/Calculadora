@@ -4,13 +4,14 @@ import { Screen } from '../Screen/Screen';
 import React from 'react';
 function Base(){
     const [datosValue, setdatosValue] = React.useState('');
-    console.log(datosValue);
+    const [historyValue, setHistory] = React.useState('');
     const [state, setState] = React.useState(false);
     return (
             <div className='base'>
-                <Screen datosValue={datosValue} />
+                <Screen datosValue={datosValue} historyValue={historyValue} />
                 <Buttoms setdatosValue={setdatosValue} datosValue={datosValue}
-                         setState={setState} state={state}/>
+                         setState={setState} state={state}
+                         setHistory={setHistory}/>
             </div>
     );
 }
