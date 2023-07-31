@@ -1,10 +1,10 @@
 
 import React from 'react';
 import './Buttoms.css';
-function Buttoms({setdatosValue , datosValue, setState, state, setHistory}){
-    const operation = {
+function Buttoms({setdatosValue , datosValue, setState, state, setHistory, historyValue}){
+    var operation = {
         solved: state,
-        data1: "",
+        data1: historyValue,
         data2: "",
         complete: datosValue,
         operator: ""
@@ -35,29 +35,25 @@ function Buttoms({setdatosValue , datosValue, setState, state, setHistory}){
         setdatosValue(operation.complete);
     }
     function addOperator(){
+        operation.data2 = operation.complete;
+        operation.complete = operation.data1 + operation.data2; 
+        validateOperator();
         var replace1 = operation.data1;
         var replace2 = operation.data2;
-        if(operation.data1.includes("+")){
+        if(operation.data2.includes("-")){
+            operation.data1 = operation.data1.replace("-", "");
+            operation.data2 = operation.data2.replace("-", "");
+            operation.complete = operation.complete.replace(replace1, operation.data1);
+            operation.complete = operation.complete.replaceAll(replace2, operation.data2);
+            setHistory(operation.data1);
+            setdatosValue(operation.data2);
+        } else{
             operation.data1 = "-" + operation.data1;
             operation.data2 = "-" + operation.data2;
             operation.complete = operation.complete.replace(replace1, operation.data1);
             operation.complete = operation.complete.replace(replace2, operation.data2);
-            setdatosValue(operation.complete);
-        }
-        else if(operation.data1.includes("-")){
-            operation.data1 = "+" + operation.data1;
-            operation.data2 = "+" + operation.data2;
-            operation.complete = operation.complete.replace(replace1, operation.data1);
-            operation.complete = operation.complete.replace(replace2, operation.data2);
-            setdatosValue(operation.complete);
-        }
-        else{
-            operation.data1 = "-" + operation.data1;
-            operation.data2 = "-" + operation.data2;
-            operation.complete = operation.complete.replace(replace1, operation.data1);
-            operation.complete = operation.complete.replace(replace2, operation.data2);
-            setdatosValue(operation.complete);
-            console.log(replace1 + " " + replace2 + " " + operation.data1 + " " + operation.data2);
+            setHistory(operation.data1);
+            setdatosValue(operation.data2);
         }
     }
     function splitData(){
@@ -67,7 +63,8 @@ function Buttoms({setdatosValue , datosValue, setState, state, setHistory}){
         operation.data2 = array2[1];
     }
     function totalOperation() {
-        splitData()            
+        validateOperator();
+        splitData();
         if (operation.operator === "+"){       
             let result = Number(operation.data1) + Number(operation.data2);
             setHistory(operation.complete);
@@ -102,10 +99,25 @@ function Buttoms({setdatosValue , datosValue, setState, state, setHistory}){
                 setHistory(operation.complete);
             }
         }else{
-            validateOperator();
-            setdatosValue(operation.complete)
-            if(operation.complete.includes("=")){
-            totalOperation();
+            if(validateOperator()){
+                if(operation.operator === data){
+                    operation.data1 = operation.complete;
+                    setHistory(operation.data1);
+                    setdatosValue("");
+                }else{
+                    operation.operator = data;
+                    operation.data1 = operation.complete;
+                    setHistory(operation.data1);
+                    setdatosValue("");
+                }
+            } else {    
+                operation.data2 = operation.complete;
+                setdatosValue(operation.complete);
+                if(operation.complete.includes("=")){
+                    operation.complete = operation.data1 + operation.complete;
+                    setdatosValue(operation.complete);
+                    totalOperation();
+                }
             }
         }
     }

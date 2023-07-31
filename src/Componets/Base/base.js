@@ -11,7 +11,8 @@ function Base(){
                 <Screen datosValue={datosValue} historyValue={historyValue} />
                 <Buttoms setdatosValue={setdatosValue} datosValue={datosValue}
                          setState={setState} state={state}
-                         setHistory={setHistory}/>
+                         setHistory={setHistory}
+                         historyValue={historyValue}/>
             </div>
     );
 }
