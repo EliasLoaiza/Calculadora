@@ -10,4 +10,18 @@
     justify-content: center;
     left: 35%;
 }
-
+@media screen and (max-width: 700px){
+    .base{
+        left: 25%;
+    }
+}
+@media screen and (max-width: 500px){
+    .base{
+        left: 15%;
+    }
+}
+@media screen and (min-width: 700px) and (max-width: 800px) {
+    .base{
+        left: 30%;
+    }
+  }

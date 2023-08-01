@@ -22,6 +22,9 @@ function Buttoms({setdatosValue , datosValue, setState, state, setHistory, histo
         } else if(operation.complete.includes('*')){
             operation.operator = "*";
             return true;
+        } else if(operation.complete.includes('%')){
+            operation.operator = "%";
+            return true;
         } else {
             return false;
         }
@@ -33,6 +36,11 @@ function Buttoms({setdatosValue , datosValue, setState, state, setHistory, histo
     function deleteNumber(){
         operation.complete = operation.complete.slice(0, -1);
         setdatosValue(operation.complete);
+    }
+    function validatelength(){
+        if(operation.complete.length > 13){
+            operation.complete = operation.complete.slice(0, 13);
+        }
     }
     function addOperator(){
         operation.data2 = operation.complete;
@@ -55,6 +63,12 @@ function Buttoms({setdatosValue , datosValue, setState, state, setHistory, histo
             setHistory(operation.data1);
             setdatosValue(operation.data2);
         }
+    }
+    function percentaje(){
+        let result = Number(operation.complete) / 100;
+        setHistory(operation.complete);
+        setdatosValue(result.toString());
+        setState(true);
     }
     function splitData(){
         let array = operation.complete.split('=');
@@ -89,6 +103,7 @@ function Buttoms({setdatosValue , datosValue, setState, state, setHistory, histo
     }
     function saveDato(data){
         operation.complete = operation.complete + data;
+        validatelength();
         if(operation.solved){
             if(validateOperator()){
                 setState(false);
@@ -125,7 +140,7 @@ function Buttoms({setdatosValue , datosValue, setState, state, setHistory, histo
         <div className='buttoms'>
                 <button className='buttom' onClick={() => deleteData()}>CE</button>
                 <button className='buttom' onClick={() => deleteData()}>C</button>
-                <button className='buttom' onClick={() => saveDato("%")}>%</button>
+                <button className='buttom' onClick={() => percentaje()}>%</button>
                 <button className='buttom' onClick={() => saveDato("1")}>1</button>
                 <button className='buttom' onClick={() => saveDato("2")}>2</button>
                 <button className='buttom' onClick={() => saveDato("3")}>3</button>
